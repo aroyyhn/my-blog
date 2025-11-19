@@ -1,6 +1,6 @@
 import StoryCard from "../components/StoryCard";
 import { getBlogPosts } from "@/lib/contentful";
-import { format, parseISO } from "date-fns";
+import { format, parseISO, isValid } from "date-fns";
 import { id } from "date-fns/locale";
 
 export default async function Page() {
@@ -16,14 +16,16 @@ export default async function Page() {
 
   return (
     <div className="mx-auto pl-6">
+      {/* Quote section */}
       <section className="relative h-[35vh] bg-white flex items-end justify-end p-8 mb-10">
         <p className="max-w-xs text-right text-[13px] text-gray-600 leading-relaxed">
-          “seorang penyendiri tidak akan membiarkan orang lain membaca ceritanya  
+          “Seorang penyendiri tidak akan membiarkan orang lain membaca ceritanya  
           kecuali itu teman dekatnya”
           <br />— teman dekatmu
         </p>
       </section>
 
+      {/* Blog header */}
       <section className="mt-4 flex items-center justify-between">
         <h3 className="text-[14px] font-semibold text-gray-700 tracking-wide">
           BLOG
@@ -36,6 +38,7 @@ export default async function Page() {
         </a>
       </section>
 
+      {/* Stories grid */}
       <section id="stories" className="mt-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {posts.map((story) => {
@@ -46,9 +49,9 @@ export default async function Page() {
 
             if (rawDate) {
               const parsed = parseISO(rawDate);
-              formattedDate = isNaN(parsed) 
-                ? "Tanggal tidak valid"
-                : format(parsed, "dd MMMM yyyy", { locale: id });
+              formattedDate = isValid(parsed)
+                ? format(parsed, "dd MMMM yyyy", { locale: id })
+                : "Tanggal tidak valid";
             }
 
             return (
