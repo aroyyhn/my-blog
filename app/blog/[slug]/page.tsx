@@ -46,8 +46,8 @@ export default async function PostPage({ params }: PostPageProps) {
       {/* Metadata post */}
       {genre && (
         <p className="text-sm text-pink-600 font-medium mb-1 uppercase tracking-wider">
-          {genre}
-        </p>
+        {Array.isArray(genre) ? genre.join(", ") : String(genre)}
+      </p>
       )}
 
       <h1 className="text-4xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-4">
