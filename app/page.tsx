@@ -39,40 +39,26 @@ export default async function Page() {
       <section id="stories" className="mt-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {posts.map((story) => {
-            const rawDate = story.fields.date;
+            const f = story.fields;
+            const rawDate = f.date;
 
-            // Jika tanggal tidak ada → fallback langsung
-            if (!rawDate) {
-              return (
-                <StoryCard
-                  key={story.fields.slug}
-                  title={story.fields.title}
-                  excerpt={story.fields.excerpt}
-                  slug={story.fields.slug}
-                  date="Tanggal tidak tersedia"
-                  genre={story.fields.genre}
-                />
-              );
+            let formattedDate = "Tanggal tidak tersedia";
+
+            if (rawDate) {
+              const parsed = parseISO(rawDate);
+              formattedDate = isNaN(parsed) 
+                ? "Tanggal tidak valid"
+                : format(parsed, "dd MMMM yyyy", { locale: id });
             }
-
-            // Parse tanggal → aman dari error
-            let dateObj = parseISO(rawDate);
-
-            // Cek apakah valid
-            const isInvalid = isNaN(dateObj.getTime());
-
-            const formattedDateString = isInvalid
-              ? "Tanggal tidak valid"
-              : format(dateObj, "dd MMMM yyyy", { locale: id });
 
             return (
               <StoryCard
-                key={story.fields.slug}
-                title={story.fields.title}
-                excerpt={story.fields.excerpt}
-                slug={story.fields.slug}
-                date={formattedDateString}
-                genre={story.fields.genre}
+                key={f.slug}
+                title={f.title}
+                excerpt={f.excerpt}
+                slug={f.slug}
+                date={formattedDate}
+                genre={f.genre}
               />
             );
           })}
