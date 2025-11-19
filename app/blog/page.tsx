@@ -4,6 +4,7 @@ import { format, isValid } from 'date-fns';
 import { id } from 'date-fns/locale';
 
 export const fetchCache = "force-no-store";
+export const revalidate = 0;
 
 export default async function Blog() {
   const posts = await getBlogPosts();

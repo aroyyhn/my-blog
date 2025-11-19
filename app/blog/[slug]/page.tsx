@@ -5,6 +5,7 @@ import { format, isValid } from 'date-fns';
 import { id } from 'date-fns/locale';
 
 export const fetchCache = "force-no-store";
+export const revalidate = 0;
 
 // Tipe props untuk App Router
 interface PostPageProps {
@@ -70,12 +71,12 @@ export default async function PostPage({ params }: PostPageProps) {
 
       {/* Tombol kembali ke blog */}
       <div className="mt-12">
-        <a
-          href="/blog"
-          className="text-pink-600 hover:text-pink-800 transition font-semibold"
-        >
-          ← Kembali ke Daftar Blog
-        </a>
+       <a
+        href="/blog"
+        className="inline-block text-pink-600 hover:text-pink-800 transition font-semibold mt-4"
+      >
+        ← Kembali ke Daftar Blog
+      </a>
       </div>
     </div>
   );
