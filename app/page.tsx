@@ -3,7 +3,7 @@ import { getBlogPosts } from "@/lib/contentful";
 import { format, parseISO, isValid } from "date-fns";
 import { id } from "date-fns/locale";
 
-export const fetchCache = "no-store";
+export const fetchCache = "force-no-store";
 
 
 export default async function Page() {

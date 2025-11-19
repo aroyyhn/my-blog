@@ -3,6 +3,8 @@ import { getBlogPosts } from '@/lib/contentful';
 import { format, isValid } from 'date-fns';
 import { id } from 'date-fns/locale';
 
+export const fetchCache = "force-no-store";
+
 export default async function Blog() {
   const posts = await getBlogPosts();
 

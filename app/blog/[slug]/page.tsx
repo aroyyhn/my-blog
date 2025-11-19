@@ -4,7 +4,7 @@ import type { Document } from '@contentful/rich-text-types';
 import { format, isValid } from 'date-fns';
 import { id } from 'date-fns/locale';
 
-export const fetchCache = "no-store";
+export const fetchCache = "force-no-store";
 
 // Tipe props untuk App Router
 interface PostPageProps {
